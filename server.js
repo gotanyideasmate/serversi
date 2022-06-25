@@ -13,7 +13,7 @@ arr.loop = function(f = () => {}, i = 0, l = this.length) {
 arr.remove = function(i) { (i !== this.length-1) ?  this[i] = this.pop() : this.pop() };
 arr.removeR = function(i) { return (i !== this.length-1) ? this[i] = this.pop() : this.pop() }
 arr.shufflefilter = function(f) { // depends on case
-    for (var i = -1, l = this.length; ++i < l;)
+    for (var i = 0, l = this.length; i < l; ++i)
         if (!f(this[i], i, this))
             this[i--] = this[--l];
     this.length = l;
