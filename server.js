@@ -5,11 +5,8 @@ arr.loop = function(f = () => {}, i = 0, l = this.length) {
     --i;
     while (++i <= l) f(i);
 };
-arr.remove = function(i) {
-    if (i !== this.length-1)
-        this[i] = this.pop();
-    else this.pop();
-};
+arr.remove = function(i) { (i !== this.length-1) ?  this[i] = this.pop() : this.pop() };
+arr.removeR = function(i) { return (i !== this.length-1) ? this[i] = this.pop() : this.pop() }
 arr.shufflefilter = function(f) { // depends on case
     for (var i = -1, l = this.length; ++i < l;)
         if (!f(this[i], i, this))
