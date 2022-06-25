@@ -9,7 +9,7 @@ const ran = require('./lib/random.js');
 var arr = Array.prototype;
 arr.loop = function(f = () => {}, i = 0, l = this.length) {
     --i;
-    while (++i <= l) f(i);
+    while (++i < l) f(i);
 };
 arr.remove = function(i) { (i !== this.length-1) ?  this[i] = this.pop() : this.pop() };
 arr.removeR = function(i) { return (i !== this.length-1) ? this[i] = this.pop() : this.pop() }
