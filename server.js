@@ -30,11 +30,6 @@ arr.noreturnfilterconstlength = function(f) { // needs testing
             this[++j] = this[i];
     }, 0, this.usedLength);
     this.usedLength = j+1;
-}
-const gN = n => {
-    var o = new Array(n);
-    do { o[--n] = n } while (n);
-    return o;
 };
 
 class Vector {
