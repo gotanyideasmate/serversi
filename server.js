@@ -36,6 +36,34 @@ const gN = n => {
     do { o[--n] = n } while (n);
     return o;
 };
+
+class Vector {
+    constructor(x,y) {
+        this.x = x;
+        this.y = y;
+        this.len = Math.sqrt(x*x + y*y);
+        this.ang = Math.atan2(y,x);
+    }
+
+    get length() {
+        return Math.sqrt(this.x*this.x + this.y*this.y);
+    }
+
+    get angle() {
+        return Math.atan2(this.y, this.x);
+    }
+
+    update() {
+        this.len = this.length;
+        this.ang = this.angle;
+    }
+
+    clear() {
+        this.x = 0;
+        this.y = 0;
+        this.update();
+    }
+};
 /*// General requires
 require('google-closure-library');
 goog.require('goog.structs.PriorityQueue');
