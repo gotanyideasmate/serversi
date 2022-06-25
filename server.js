@@ -2,9 +2,14 @@
 const ut = require('./lib/util.js');
 var arr = Array.prototype;
 arr.loop = function(f = () => {}, i = 0, l = this.length) {
-    for (; i < l; ++i)
-        f(i);
-}
+    --i;
+    while (++i <= l) f(i);
+};
+arr.remove = function(i) {
+    if (i !== this.length-1)
+        this[i] = this[this.length-1];
+    this.pop();
+};
 arr.shufflefilter = function(f) { // depends on case
     for (var i = -1, l = this.length; ++i < l;)
         if (!f(this[i], i, this))
