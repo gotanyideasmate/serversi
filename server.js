@@ -1,4 +1,9 @@
 "use strict";
+
+require('google-closure-library');
+goog.require('goog.structs.PriorityQueue');
+goog.require('goog.structs.QuadTree');
+
 const ut = require('./lib/util.js');
 var arr = Array.prototype;
 arr.loop = function(f = () => {}, i = 0, l = this.length) {
