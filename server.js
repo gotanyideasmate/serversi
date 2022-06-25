@@ -1,9 +1,8 @@
 "use strict";
 const ut = require('./lib/util.js');
 var arr = Array.prototype;
-arr.loop = function(f = () => {}, i = 0, l = this.length, t = false) {
-    if (t) l = this.usedLength;
-    for (; ++i < l;)
+arr.loop = function(f = () => {}, i = 0, l = this.length) {
+    for (; i < l; ++i)
         f(i);
 }
 arr.shufflefilter = function(f) { // depends on case
@@ -14,18 +13,20 @@ arr.shufflefilter = function(f) { // depends on case
 };
 arr.noreturnfilter = function(f) { // for all
     var j = -1;
-    for (var i = -1, l = this.length; ++i < l;)
+    this.loop((i) => {
         if (f(this[i], i, this))
             this[++j] = this[i];
+    });
     this.length = j+1;
 };
 arr.usedLength = arr.length;
 arr.resetUsedLength = () => { arr.usedLength = arr.length };
 arr.noreturnfilterconstlength = function(f) { // needs testing
     var j = -1;
-    for (var i = -1, l = this.usedLength; ++i < l;)
+    this.loop((i) =>
         if (f(this[i], i, this))
             this[++j] = this[i];
+    }, 0, this.usedLength);
     this.usedLength = j+1;
 }
 const gN = n => {
