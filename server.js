@@ -7,23 +7,26 @@ goog.require('goog.structs.QuadTree');
 const ut = require('./lib/util.js');
 const ran = require('./lib/random.js');
 var arr = Array.prototype;
+var arr = Array.prototype;
 arr.loop = function(f = () => {}, i = 0, l = this.length) {
     --i;
-    while (++i < l) f(i);
+    while (++i < l)
+        f(this[i], i, this);
 };
 arr.remove = function(i) { (i !== this.length-1) ?  this[i] = this.pop() : this.pop() };
 arr.removeR = function(i) { return (i !== this.length-1) ? this[i] = this.pop() : this.pop() }
 arr.shufflefilter = function(f) { // depends on case
-    for (var i = 0, l = this.length; i < l; ++i)
+    var i = -1, l = this.length;
+    while (++i < l)
         if (!f(this[i], i, this))
             this[i--] = this[--l];
     this.length = l;
 };
 arr.noreturnfilter = function(f) { // for all
     var j = -1;
-    this.loop((i) => {
-        if (f(this[i], i, this))
-            this[++j] = this[i];
+    this.loop((x, i) => {
+        if (f(x, i, this))
+            this[++j] = x;
     });
     this.length = j+1;
 };
@@ -31,13 +34,23 @@ arr.usedLength = arr.length;
 arr.resetUsedLength = () => { arr.usedLength = arr.length };
 arr.noreturnfilterconstlength = function(f) { // needs testing
     var j = -1;
-    this.loop((i) =>
-        if (f(this[i], i, this))
-            this[++j] = this[i];
+    this.loop((x, i) => {
+        if (f(x, i, this))
+            this[++j] = x;
     }, 0, this.usedLength);
     this.usedLength = j+1;
 };
 arr.randChoose = function(l = 0, r = this.length-1) { return this[ran.randIn(l,r)] };
+arr.every = function(f) {
+    var i = -1;
+    while (++i < this.length && f(a[i]));
+    return (i === this.length);
+};
+arr.fill = function(n) {
+    var i = -1;
+    while (++i < this.length)
+        this[i] = n;
+};
 
 class Vector {
     constructor(x,y) {
