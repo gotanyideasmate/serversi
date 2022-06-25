@@ -7,8 +7,8 @@ arr.loop = function(f = () => {}, i = 0, l = this.length) {
 };
 arr.remove = function(i) {
     if (i !== this.length-1)
-        this[i] = this[this.length-1];
-    this.pop();
+        this[i] = this.pop();
+    else this.pop();
 };
 arr.shufflefilter = function(f) { // depends on case
     for (var i = -1, l = this.length; ++i < l;)
