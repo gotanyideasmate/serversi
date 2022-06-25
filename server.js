@@ -5,6 +5,7 @@ goog.require('goog.structs.PriorityQueue');
 goog.require('goog.structs.QuadTree');
 
 const ut = require('./lib/util.js');
+const ran = require('./lib/random.js');
 var arr = Array.prototype;
 arr.loop = function(f = () => {}, i = 0, l = this.length) {
     --i;
@@ -36,6 +37,7 @@ arr.noreturnfilterconstlength = function(f) { // needs testing
     }, 0, this.usedLength);
     this.usedLength = j+1;
 };
+arr.randChoose = function(l = 0, r = this.length-1) { return this[ran.randIn(l,r)] };
 
 class Vector {
     constructor(x,y) {
